@@ -40,13 +40,23 @@ namespace AdjustSdk
 
         //internal List<Action<ActivityHandler>> PreLaunchActions { get; set; }
 
+        public EventHandler<string> LogHandler { get; set; }
+
         internal static Func<string, string> String2Sha256Func { get; set; }
         internal static Func<string, string> String2Sha512Func { get; set; }
         internal static Func<string, string> String2Md5Func { get; set; }
 
         public AdjustConfig(string appToken, string environment, LogLevel? logLevel = null)//, Action<string> logDelegate = null, LogLevel? logLevel = null)
         {
-            Action<string> logDelegate = (x) => Trace.WriteLine(x);
+            Action<string> logDelegate = (x) =>
+            {
+                //Debug.WriteLine(x);
+                Trace.WriteLine(x);
+                //Console.Out.WriteLine(x);
+
+                if (LogHandler != null)
+                    LogHandler.Invoke(null, x);
+            };
 
             ConfigureLogger(environment, logDelegate, logLevel);
 

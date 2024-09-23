@@ -29,6 +29,9 @@ static void initAdjust()
         const auto campaign = attribution.Campaign();
     });
 
+    aconfig.LogHandler([](IInspectable const& /* sender */, auto const& msg) {
+    });
+
     AdjustSdk::Adjust::ApplicationLaunching(aconfig);
     AdjustSdk::Adjust::ApplicationActivated();
 }

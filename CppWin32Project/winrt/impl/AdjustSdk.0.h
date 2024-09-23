@@ -190,6 +190,8 @@ namespace winrt::impl
             virtual int32_t __stdcall get_DelayStart(void**) noexcept = 0;
             virtual int32_t __stdcall put_AttributionChanged(void*) noexcept = 0;
             virtual int32_t __stdcall get_AttributionChanged(void**) noexcept = 0;
+            virtual int32_t __stdcall put_LogHandler(void*) noexcept = 0;
+            virtual int32_t __stdcall get_LogHandler(void**) noexcept = 0;
             virtual int32_t __stdcall SetUserAgent(void*) noexcept = 0;
             virtual int32_t __stdcall SetDeviceKnown(bool) noexcept = 0;
             virtual int32_t __stdcall IsValid(bool*) noexcept = 0;
@@ -400,6 +402,8 @@ namespace winrt::impl
         [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::IReference<winrt::Windows::Foundation::TimeSpan>) DelayStart() const;
         WINRT_IMPL_AUTO(void) AttributionChanged(winrt::Windows::Foundation::EventHandler<winrt::AdjustSdk::AdjustAttribution> const& value) const;
         [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::EventHandler<winrt::AdjustSdk::AdjustAttribution>) AttributionChanged() const;
+        WINRT_IMPL_AUTO(void) LogHandler(winrt::Windows::Foundation::EventHandler<hstring> const& value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::EventHandler<hstring>) LogHandler() const;
         WINRT_IMPL_AUTO(void) SetUserAgent(param::hstring const& userAgent) const;
         WINRT_IMPL_AUTO(void) SetDeviceKnown(bool deviceKnown) const;
         WINRT_IMPL_AUTO(bool) IsValid() const;

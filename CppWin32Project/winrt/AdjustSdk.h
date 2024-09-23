@@ -187,6 +187,16 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::AdjustSdk::IAdjustConfigClass)->get_AttributionChanged(&winrt_impl_result));
         return winrt::Windows::Foundation::EventHandler<winrt::AdjustSdk::AdjustAttribution>{ winrt_impl_result, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_AdjustSdk_IAdjustConfigClass<D>::LogHandler(winrt::Windows::Foundation::EventHandler<hstring> const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::AdjustSdk::IAdjustConfigClass)->put_LogHandler(*(void**)(&value)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::EventHandler<hstring>) consume_AdjustSdk_IAdjustConfigClass<D>::LogHandler() const
+    {
+        void* winrt_impl_result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::AdjustSdk::IAdjustConfigClass)->get_LogHandler(&winrt_impl_result));
+        return winrt::Windows::Foundation::EventHandler<hstring>{ winrt_impl_result, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(void) consume_AdjustSdk_IAdjustConfigClass<D>::SetUserAgent(param::hstring const& userAgent) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::AdjustSdk::IAdjustConfigClass)->SetUserAgent(*(void**)(&userAgent)));
@@ -888,6 +898,21 @@ namespace winrt::impl
             clear_abi(winrt_impl_result);
             typename D::abi_guard guard(this->shim());
             *winrt_impl_result = detach_from<winrt::Windows::Foundation::EventHandler<winrt::AdjustSdk::AdjustAttribution>>(this->shim().AttributionChanged());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_LogHandler(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().LogHandler(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<hstring> const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_LogHandler(void** winrt_impl_result) noexcept final try
+        {
+            clear_abi(winrt_impl_result);
+            typename D::abi_guard guard(this->shim());
+            *winrt_impl_result = detach_from<winrt::Windows::Foundation::EventHandler<hstring>>(this->shim().LogHandler());
             return 0;
         }
         catch (...) { return to_hresult(); }
